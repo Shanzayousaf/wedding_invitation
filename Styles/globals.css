@@ -1,0 +1,65 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+@layer components {
+  .font-cursive {
+    font-family: 'Great Vibes', cursive;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@theme {
+  /* Color Palette - Wedding Theme */
+  --color-blush-50: #fff5f7;
+  --color-blush-100: #ffe3e9;
+  --color-blush-200: #ffc7d4;
+  --color-blush-300: #ff9ab0;
+  --color-blush-400: #ff6d8e;
+  --color-blush-500: #f9486b;
+  --color-blush-600: #e62e5c;
+  --color-blush-700: #c21f4a;
+  --color-blush-800: #a11d44;
+  --color-blush-900: #881c40;
+  
+  --color-gold-50: #fffef7;
+  --color-gold-100: #fffbeb;
+  --color-gold-200: #fef3c7;
+  --color-gold-300: #fde68a;
+  --color-gold-400: #fcd34d;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #b8941f;
+  --color-gold-700: #947518;
+  --color-gold-800: #7a5e17;
+  --color-gold-900: #684e15;
+  
+  --color-ivory-50: #fffef9;
+  --color-ivory-100: #fffdf5;
+  --color-ivory-200: #fffaeb;
+  --color-ivory-300: #fff6db;
+  --color-ivory-400: #ffefc1;
+  --color-ivory-500: #fffff0;
+  --color-ivory-600: #e6dcc7;
+  --color-ivory-700: #c4b89f;
+  --color-ivory-800: #9e9280;
+  --color-ivory-900: #7d7466;
+
+  /* Fonts */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-family-serif: 'Playfair Display', Georgia, serif;
+  --font-family-cursive: 'Great Vibes', cursive;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
