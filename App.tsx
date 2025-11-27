@@ -4,6 +4,7 @@ import { HomePage } from './wedding_invitation/HomePage';
 import { LoginPage } from './wedding_invitation/LoginPage';
 import { InvitationPage } from './wedding_invitation/InvitationPage';
 import { AdminDashboard } from './wedding_invitation/AdminDashboard';
+import { BackgroundVideo } from './wedding_invitation/BackgroundVideo';
 
 type Page = 'home' | 'login' | 'invitation' | 'admin';
 
@@ -53,6 +54,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
+      {/* Bismillah Banner */}
+      <header className="bg-white text-center py-6 border-b border-blush-100 shadow-sm">
+        <p className="text-2xl md:text-3xl font-serif text-gray-900 tracking-wide">
+          بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+        </p>
+        <p className="text-sm md:text-base text-gray-600 mt-2">
+          In the name of Allah, the Most Gracious, the Most Merciful
+        </p>
+      </header>
+
       {/* Hidden admin button - click bottom right corner */}
       <button
         onClick={handleAdminAccess}

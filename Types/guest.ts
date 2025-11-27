@@ -27,7 +27,6 @@ export interface EventDetails {
     address: string;
     mapUrl: string;
   };
-  dressCode: string;
   color: string;
 }
 export interface Guest {
@@ -59,6 +58,5 @@ export interface EventDetails {
     address: string;
     mapUrl: string;
   };
-  dressCode: string;
   color: string;
 }

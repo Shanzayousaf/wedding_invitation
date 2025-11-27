@@ -1,4 +1,4 @@
-import { Guest, EventDetails } from '../types/guest';
+import { Guest, EventDetails } from '../Types/guest';
 
 // Mock guest data
 export const mockGuests: Guest[] = [
@@ -90,33 +90,31 @@ export const eventDetails: Record<'reception' | 'barat', EventDetails> = {
   reception: {
     type: 'reception',
     couple: {
-      bride: 'Emily Rose',
-      groom: 'James Anderson',
+      bride: 'Muskan (Daughter of M. Kashan)',
+      groom: 'Talha (son of Tanveer Yousaf)',
     },
-    date: 'June 15, 2025',
-    time: '6:00 PM - 11:00 PM',
+    date: 'January 2, 2026',
+    time: '8:00 PM - 11:00 PM',
     venue: {
-      name: 'The Grand Ballroom',
-      address: '123 Elegant Avenue, Downtown District, City, State 12345',
+      name: 'Royal Challet Lawn',
+      address: 'B-172, Block-11, Gulistan-e-Johar, Near P.O.B Eye Hospital & Be Energy Petrol Pump, Karachi',
       mapUrl: 'https://maps.google.com',
     },
-    dressCode: 'Black Tie Optional',
     color: '#f9486b',
   },
   barat: {
     type: 'barat',
     couple: {
-      bride: 'Aisha Malik',
-      groom: 'Rahul Kapoor',
+      bride: 'Shanza (Daughter of Tanveer Yousaf)',
+      groom: 'Yasir (son of Asgar)',
     },
-    date: 'June 15, 2025',
-    time: '4:00 PM - 10:00 PM',
+    date: 'January 2, 2026',
+    time: '8:00 PM - 11:00 PM',
     venue: {
-      name: 'Lotus Gardens & Banquet Hall',
-      address: '456 Heritage Road, Garden District, City, State 12345',
+      name: 'Royal Challet Lawn',
+      address: 'B-172, Block-11, Gulistan-e-Johar, Near P.O.B Eye Hospital & Be Energy Petrol Pump, Karachi',
       mapUrl: 'https://maps.google.com',
     },
-    dressCode: 'Traditional Indian Attire',
     color: '#d4af37',
   },
 };
@@ -138,4 +136,26 @@ export const updateGuestRSVP = (id: string, updates: Partial<Guest>): Guest | un
     return mockGuests[guestIndex];
   }
   return undefined;
+};
+
+const resolveBaseInvitationUrl = (baseUrl?: string) => {
+  if (baseUrl) {
+    return baseUrl;
+  }
+  if (typeof window !== 'undefined') {
+    return `${window.location.origin}${window.location.pathname}`;
+  }
+  return '';
+};
+
+export const buildInvitationUrl = (guestId: string, baseUrl?: string) => {
+  const resolvedBase = resolveBaseInvitationUrl(baseUrl);
+  return `${resolvedBase}#invitation/${guestId}`;
+};
+
+export const getGuestInvitationLinks = (baseUrl?: string) => {
+  return mockGuests.map(guest => ({
+    ...guest,
+    invitationUrl: buildInvitationUrl(guest.id, baseUrl),
+  }));
 };
