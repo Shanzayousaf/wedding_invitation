@@ -2,7 +2,6 @@ import { useMemo, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, Heart, Share2, Copy, Check, Phone } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader } from '../ui/card';
-import { ImageWithFallback } from './ImageWithFallback';
 import { contactNumbers, eventContent, invitationCopy, whatsappLink } from './eventContent';
 
 interface InvitationPageProps {
@@ -74,12 +73,7 @@ export function InvitationPage({ onNavigate }: InvitationPageProps) {
                 {invitationCopy.dressCode}
               </p>
             </div>
-            <div className="relative h-72 lg:h-full">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1479708231022-4be40f711aad?auto=format&fit=crop&w=900&q=80"
-                alt="Wedding ambience"
-                className="w-full h-full object-cover"
-              />
+            <div className="relative h-72 lg:h-full bg-gradient-to-b from-[#111] via-[#0d0d0d] to-[#050505]">
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/70" />
               <div className="absolute bottom-6 left-6">
                 <p className="text-white/60 text-xs uppercase tracking-[0.4em]">Hosted by</p>
@@ -99,16 +93,7 @@ export function InvitationPage({ onNavigate }: InvitationPageProps) {
                 key={detail.key}
                 className="overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl"
               >
-                <div className="relative h-56">
-                  <ImageWithFallback
-                    src={
-                      detail.key === 'reception'
-                        ? 'https://images.unsplash.com/photo-1753559319967-8f959ad78b2d?auto=format&fit=crop&w=1000&q=80'
-                        : 'https://images.unsplash.com/photo-1517002152503-aeda5fe2cd36?auto=format&fit=crop&w=1000&q=80'
-                    }
-                    alt={detail.title}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative h-56 bg-gradient-to-b from-[#111] via-[#0d0d0d] to-[#050505]">
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <p className="text-xs uppercase tracking-[0.5em] text-white/70">

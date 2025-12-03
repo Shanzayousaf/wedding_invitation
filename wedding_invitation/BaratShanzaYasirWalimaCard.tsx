@@ -1,7 +1,4 @@
-const baratImage =
-  'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=80';
-const walimaImage =
-  'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=80';
+import { contactNumbers, whatsappLink } from './eventContent';
 
 export function BaratShanzaYasirWalimaCard() {
   return (
@@ -10,13 +7,7 @@ export function BaratShanzaYasirWalimaCard() {
 
       <div className="relative rounded-[28px] bg-gradient-to-b from-[#111] via-[#0d0d0d] to-[#050505]">
         <section className="relative">
-          <header className="relative h-44 overflow-hidden rounded-t-[28px]">
-            <img
-              src={baratImage}
-              alt="Shanza & Yasir Barat"
-              loading="lazy"
-              className="h-full w-full object-cover opacity-70 transition duration-700 group-hover:scale-105"
-            />
+          <header className="relative h-44 overflow-hidden rounded-t-[28px] bg-gradient-to-b from-[#111] to-[#050505]">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/20 to-[#0d0d0d]" />
             <div className="absolute bottom-4 left-6">
               <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Honoring Family</p>
@@ -49,13 +40,7 @@ export function BaratShanzaYasirWalimaCard() {
         </section>
 
         <section className="relative border-t border-white/10">
-          <header className="relative h-44 overflow-hidden">
-            <img
-              src={walimaImage}
-              alt="Talha & Muskan Walima"
-              loading="lazy"
-              className="h-full w-full object-cover opacity-70 transition duration-700 group-hover:scale-105"
-            />
+          <header className="relative h-44 overflow-hidden bg-gradient-to-t from-[#050505] via-[#0d0d0d]/40 to-transparent">
             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#0d0d0d]/40 to-transparent" />
             <div className="absolute top-4 left-6">
               <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Evening Elegance</p>
@@ -99,7 +84,19 @@ export function BaratShanzaYasirWalimaCard() {
             <div className="border-t border-white/10 pt-6">
               <p className="text-xs uppercase tracking-[0.5em] text-[#facc45]/70">RSVP</p>
               <p className="mt-3 font-serif text-lg text-white">Tanveer Yousaf</p>
-              <p className="text-white/70">03422161007, 03462468393</p>
+              <div className="flex flex-col gap-2 mt-2">
+                {contactNumbers.map((entry) => (
+                  <a
+                    key={entry.number}
+                    href={whatsappLink(entry.number)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/70 hover:text-[#facc45] transition"
+                  >
+                    {entry.number}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </section>

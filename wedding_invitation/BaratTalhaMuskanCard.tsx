@@ -1,5 +1,4 @@
-const cardImage =
-  'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80';
+import { contactNumbers, whatsappLink } from './eventContent';
 
 export function BaratTalhaMuskanCard() {
   return (
@@ -7,13 +6,7 @@ export function BaratTalhaMuskanCard() {
       <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition duration-700 blur-2xl bg-[#facc45]/30" />
 
       <div className="relative rounded-[28px] bg-gradient-to-b from-[#111] via-[#0d0d0d] to-[#050505]">
-        <div className="relative h-48 overflow-hidden rounded-t-[28px]">
-          <img
-            src={cardImage}
-            alt="Talha & Muskan Barat"
-            loading="lazy"
-            className="h-full w-full object-cover opacity-70 transition duration-700 group-hover:scale-105"
-          />
+        <div className="relative h-48 overflow-hidden rounded-t-[28px] bg-gradient-to-b from-[#111] to-[#050505]">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/20 to-[#0d0d0d]" />
           <div className="absolute bottom-4 left-6">
             <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Family Announcement</p>
@@ -57,7 +50,19 @@ export function BaratTalhaMuskanCard() {
           <div className="border-t border-white/10 pt-6">
             <p className="text-xs uppercase tracking-[0.5em] text-[#facc45]/70">RSVP</p>
             <p className="mt-3 font-serif text-lg text-white">Tanveer Yousaf</p>
-            <p className="text-white/70">03422161007, 03462468393</p>
+            <div className="flex flex-col gap-2 mt-2">
+              {contactNumbers.map((entry) => (
+                <a
+                  key={entry.number}
+                  href={whatsappLink(entry.number)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-[#facc45] transition"
+                >
+                  {entry.number}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
