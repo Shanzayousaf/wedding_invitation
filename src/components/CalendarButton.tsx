@@ -52,7 +52,7 @@ END:VCALENDAR`;
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-col sm:flex-row gap-2">
       <button
         onClick={handleGoogleCalendar}
         className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-[#d4af37]/60 bg-[#d4af37]/10 text-[#d4af37] hover:bg-[#d4af37]/20 transition duration-300 font-serif text-xs uppercase tracking-widest"
