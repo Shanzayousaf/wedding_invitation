@@ -5,9 +5,20 @@ import { Card, CardContent, CardHeader } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { FloralDecoration } from './FloralDecoration';
 import { ImageWithFallback } from './ImageWithFallback';
-import { getGuestById, eventDetails } from '../Data/mockData';
+import { getGuestById, eventDetails, buildInvitationUrl } from '../Data/mockData';
 import { Guest } from '../Types/guest';
 import { RSVPForm } from '../RSVP-form';
+import { CelebrationOverview } from './CelebrationOverview';
+import { DancingCoupleBackground } from './DancingCoupleBackground';
+
+// Helper function to parse name and parent info
+const parseNameAndParent = (fullName: string) => {
+  const match = fullName.match(/^(.+?)\s*\((.+)\)$/);
+  if (match) {
+    return { name: match[1].trim(), parent: `(${match[2]})` };
+  }
+  return { name: fullName, parent: '' };
+};
 
 interface InvitationPageProps {
   guestId: string;
@@ -18,6 +29,7 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
   const [guest, setGuest] = useState<Guest | null>(null);
   const [showRSVP, setShowRSVP] = useState(false);
   const [copied, setCopied] = useState(false);
+  const invitationUrl = buildInvitationUrl(guestId);
 
   useEffect(() => {
     const guestData = getGuestById(guestId);
@@ -27,14 +39,12 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
   }, [guestId]);
 
   const handleCopyLink = () => {
-    const invitationUrl = `${window.location.origin}${window.location.pathname}#invitation/${guestId}`;
     navigator.clipboard.writeText(invitationUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   const handleShareLink = () => {
-    const invitationUrl = `${window.location.origin}${window.location.pathname}#invitation/${guestId}`;
     if (navigator.share) {
       navigator.share({
         title: 'Wedding Invitation',
@@ -105,11 +115,12 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-ivory-50 via-${eventColor}-50 to-${eventColor}-100`}>
+    <div className={`min-h-screen bg-gradient-to-br from-ivory-50 via-${eventColor}-50 to-${eventColor}-100 relative`}>
+      <DancingCoupleBackground />
       <FloralDecoration position="top-left" color={`text-${eventColor}-300`} />
       <FloralDecoration position="bottom-right" color={`text-${eventColor}-400`} />
       
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 py-8 max-w-6xl relative z-10">
         <Button
           variant="ghost"
           onClick={() => onNavigate('home')}
@@ -119,6 +130,9 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
           Back to Home
         </Button>
 
+        <CelebrationOverview />
+
+        <div className="mt-16 max-w-4xl mx-auto">
         {/* Invitation Header */}
         <div className="text-center mb-8 animate-fade-in">
           <Badge variant="outline" className={`mb-4 px-4 py-1 border-2 ${getRSVPStatusColor()}`}>
@@ -151,13 +165,24 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
               <h2 className="text-4xl md:text-5xl mb-4">
                 {event.type === 'reception' ? 'Wedding Reception' : 'Barat Ceremony'}
               </h2>
-              <p className="font-cursive text-3xl md:text-5xl mb-2">
-                {event.couple.bride}
-              </p>
-              <Heart className="w-8 h-8 my-2 fill-white animate-pulse" />
-              <p className="font-cursive text-3xl md:text-5xl">
-                {event.couple.groom}
-              </p>
+              {event.type === 'barat' || event.type === 'reception' ? (
+                <div className="font-cursive text-2xl md:text-4xl px-4">
+                  <p>{parseNameAndParent(event.couple.groom).name} weds {parseNameAndParent(event.couple.bride).name}</p>
+                  <p className="text-lg md:text-2xl mt-2">
+                    {parseNameAndParent(event.couple.groom).parent} & {parseNameAndParent(event.couple.bride).parent}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <p className="font-cursive text-3xl md:text-5xl mb-2">
+                    {event.couple.bride}
+                  </p>
+                  <Heart className="w-8 h-8 my-2 fill-white animate-pulse" />
+                  <p className="font-cursive text-3xl md:text-5xl">
+                    {event.couple.groom}
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
@@ -196,11 +221,6 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
               </div>
 
               <div className="space-y-4">
-                <div className={`p-4 bg-${eventColor}-100 rounded-lg border border-${eventColor}-200`}>
-                  <p className="text-sm text-gray-600 mb-1">Dress Code</p>
-                  <p className="text-gray-800">{event.dressCode}</p>
-                </div>
-
                 <div className={`p-4 bg-${eventColor}-100 rounded-lg border border-${eventColor}-200`}>
                   <p className="text-sm text-gray-600 mb-2">Your Invitation Details</p>
                   <div className="space-y-2 text-sm">
@@ -277,10 +297,11 @@ export function InvitationPage({ guestId, onNavigate }: InvitationPageProps) {
           <div className={`p-4 bg-${eventColor}-50 rounded-lg border border-${eventColor}-200 max-w-2xl mx-auto`}>
             <p className="text-xs text-gray-600 mb-2">Your unique invitation link:</p>
             <code className="text-sm text-gray-800 bg-white px-3 py-2 rounded border border-gray-200 block break-all">
-              {window.location.origin}{window.location.pathname}#invitation/{guestId}
+              {invitationUrl}
             </code>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
