@@ -1,30 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Toaster } from './ui/sonner';
 import { HomePage } from './wedding_invitation/HomePage';
-import { LoginPage } from './wedding_invitation/LoginPage';
 import { InvitationPage } from './wedding_invitation/InvitationPage';
-import { AdminDashboard } from './wedding_invitation/AdminDashboard';
-import { BackgroundVideo } from './wedding_invitation/BackgroundVideo';
+import { AnimatedBackground } from './wedding_invitation/AnimatedBackground';
+import { ReceptionPage } from './wedding_invitation/ReceptionPage';
+import { BaratPage } from './wedding_invitation/BaratPage';
 
-type Page = 'home' | 'login' | 'invitation' | 'admin';
+type Page = 'home' | 'invitation' | 'reception' | 'barat';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [guestId, setGuestId] = useState<string>('');
 
   // Handle URL-based routing
   useEffect(() => {
     const handleRoute = () => {
-      const hash = window.location.hash.slice(1); // Remove the #
-      const [route, id] = hash.split('/');
-
-      if (route === 'invitation' && id) {
-        setGuestId(id);
-        setCurrentPage('invitation');
-      } else if (route === 'login') {
-        setCurrentPage('login');
-      } else if (route === 'admin') {
-        setCurrentPage('admin');
+      const hash = window.location.hash.slice(1);
+      if (hash === 'reception' || hash === 'barat' || hash === 'invitation') {
+        setCurrentPage(hash);
       } else {
         setCurrentPage('home');
       }
@@ -35,55 +27,62 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleRoute);
   }, []);
 
-  const handleNavigation = (page: Page, id?: string) => {
-    if (page === 'invitation' && id) {
-      window.location.hash = `invitation/${id}`;
-    } else if (page === 'login') {
-      window.location.hash = 'login';
-    } else if (page === 'admin') {
-      window.location.hash = 'admin';
-    } else {
+  const handleNavigation = (page: Page) => {
+    if (page === 'home') {
       window.location.hash = '';
+    } else {
+      window.location.hash = page;
     }
   };
 
-  // Admin access - in production, this would be password-protected
-  const handleAdminAccess = () => {
-    handleNavigation('admin');
-  };
-
   return (
-    <div className="min-h-screen">
-      {/* Bismillah Banner */}
-      <header className="bg-white text-center py-6 border-b border-blush-100 shadow-sm">
-        <p className="text-2xl md:text-3xl font-serif text-gray-900 tracking-wide">
-          بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-        </p>
-        <p className="text-sm md:text-base text-gray-600 mt-2">
-          In the name of Allah, the Most Gracious, the Most Merciful
-        </p>
-      </header>
+    <div className="relative min-h-screen bg-[#050505] text-white overflow-hidden">
+      <AnimatedBackground />
 
-      {/* Hidden admin button - click bottom right corner */}
-      <button
-        onClick={handleAdminAccess}
-        className="fixed bottom-4 right-4 w-12 h-12 opacity-0 hover:opacity-100 transition-opacity z-50"
-        aria-label="Admin Access"
-        title="Admin Dashboard"
-      >
-        <div className="w-full h-full bg-gradient-to-br from-blush-500 to-gold-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all">
-          <span className="text-white text-xs">Admin</span>
-        </div>
-      </button>
+      <div className="relative z-10 min-h-screen flex flex-col">
+        <header className="border-b border-white/10 bg-black/40 backdrop-blur-xl">
+          <div className="container mx-auto px-4 py-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.6em] text-gold-400">
+                بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+              </p>
+              <p className="text-white/70 text-sm">
+                In the name of Allah, the Most Gracious, the Most Merciful
+              </p>
+            </div>
+            <nav className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.4em] text-white/70">
+              {(['home', 'reception', 'barat', 'invitation'] as Page[]).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => handleNavigation(page)}
+                  className={`px-4 py-2 rounded-full transition ${
+                    currentPage === page
+                      ? 'bg-white/15 text-white'
+                      : 'hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+            </nav>
+          </div>
+        </header>
 
-      {currentPage === 'home' && <HomePage onNavigate={handleNavigation} />}
-      {currentPage === 'login' && <LoginPage onNavigate={handleNavigation} />}
-      {currentPage === 'invitation' && guestId && (
-        <InvitationPage guestId={guestId} onNavigate={handleNavigation} />
-      )}
-      {currentPage === 'admin' && <AdminDashboard onNavigate={handleNavigation} />}
-      
-      <Toaster position="top-center" richColors />
+        <main className="flex-1">
+          {currentPage === 'home' && <HomePage onNavigate={handleNavigation} />}
+          {currentPage === 'reception' && <ReceptionPage onNavigate={handleNavigation} />}
+          {currentPage === 'barat' && <BaratPage onNavigate={handleNavigation} />}
+          {currentPage === 'invitation' && <InvitationPage onNavigate={handleNavigation} />}
+        </main>
+
+        <footer className="border-t border-white/10 bg-black/40 backdrop-blur-xl">
+          <div className="container mx-auto px-4 py-6 text-xs uppercase tracking-[0.4em] text-white/50 text-center">
+            Crafted in charcoal &amp; gold · 2026
+          </div>
+        </footer>
+
+        <Toaster position="top-center" richColors />
+      </div>
     </div>
   );
 }

@@ -63,3 +63,10 @@
     transform: translateY(-10px);
   }
 }
+
+body {
+  background-color: #0d0d0d;
+  color: #f5f3ee;
+  font-family: var(--font-family-sans);
+  min-height: 100vh;
+}

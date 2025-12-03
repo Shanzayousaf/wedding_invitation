@@ -4,24 +4,20 @@ A modern, responsive React-based web application for managing wedding invitation
 
 ## 🎯 Features
 
-### 👨‍👩‍👧‍👦 Guest Management
-- **Guest Authentication**: Secure guest lookup using invitation IDs
-- **Personalized Invitations**: Custom greeting with guest details
-- **RSVP Tracking**: Real-time RSVP status updates
-- **Admin Dashboard**: Complete guest management interface
+### ✨ Immersive Experience
+- **Charcoal & Gold Theme**: Inspired by luxury invitation cards
+- **Anti-Gravity Canvas**: Floating particles, connecting lines, and floral outlines
+- **Unified Layout**: Reception, Barat, and invitation pages share one cohesive aesthetic
 
-### 📊 Admin Features
-- **Guest Statistics**: View total guests, attendance count, declining guests
-- **Event Split View**: Separate tracking for Reception and Barat events
-- **Advanced Filtering**: Filter guests by RSVP status
-- **CSV Export**: Download guest list with all details
-- **Guest Search**: Quick lookup functionality
+### 📍 Event Storytelling
+- **Dedicated Pages**: Each celebration gets its own schedule, venue, and contact section
+- **Embedded Maps**: Monochrome Google Maps with quick access links
+- **WhatsApp Concierge**: Tap-to-chat numbers for instant coordination
 
-### 🎨 User Experience
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Beautiful UI**: Modern design with custom animations and decorations
-- **Toast Notifications**: Real-time feedback for user actions
-- **Error Handling**: Graceful error messages and recovery
+### 📤 Sharing & Accessibility
+- **Open Invitation**: No logins, QR codes, or guest data required
+- **Share & Copy Controls**: Built-in share sheet with clipboard fallback
+- **Responsive Design**: Optimized for phones, tablets, laptops, and desktops
 
 ## 📦 Tech Stack
 
@@ -87,15 +83,15 @@ wedding_invitation/
 ├── postcss.config.js         # PostCSS configuration
 ├── App.tsx                   # Main router component
 ├── main.tsx                  # React entry point
-├── RSVP-form.tsx            # Shared RSVP form component
 │
 ├── wedding_invitation/       # Page components
-│   ├── HomePage.tsx          # Landing page with event info
-│   ├── LoginPage.tsx         # Guest ID lookup
-│   ├── InvitationPage.tsx    # Personalized invitation
-│   ├── AdminDashboard.tsx    # Admin management panel
-│   ├── FloralDecoration.tsx  # Decorative elements
-│   └── ImageWithFallback.tsx # Image error handling
+│   ├── HomePage.tsx          # Landing page + hero
+│   ├── InvitationPage.tsx    # Open invitation experience
+│   ├── ReceptionPage.tsx     # Reception detail page
+│   ├── BaratPage.tsx         # Barat detail page
+│   ├── AnimatedBackground.tsx# Anti-gravity canvas
+│   ├── ImageWithFallback.tsx # Image error handling
+│   └── eventContent.ts       # Central event/content data
 │
 ├── ui/                       # Pre-built UI components (45+ components)
 │   ├── button.tsx
@@ -112,12 +108,6 @@ wedding_invitation/
 │   ├── sonner.tsx            # Toast notifications
 │   └── ... (40+ more components)
 │
-├── Data/
-│   └── mockData.ts           # Mock guest data and utilities
-│
-├── Types/
-│   └── guest.ts              # TypeScript interfaces
-│
 └── Styles/
     └── globals.css           # Global styles and Tailwind config
 ```
@@ -129,76 +119,37 @@ wedding_invitation/
 | Route | Component | Description |
 |-------|-----------|-------------|
 | `#` or `#/` | HomePage | Welcome page with event details |
-| `#login` | LoginPage | Guest authentication |
-| `#invitation/:id` | InvitationPage | Personalized invitation & RSVP |
-| `#admin` | AdminDashboard | Admin management (hidden button) |
+| `#reception` | ReceptionPage | Elegant reception details + map |
+| `#barat` | BaratPage | Barat ceremony schedule + contact |
+| `#invitation` | InvitationPage | Shareable digital invitation |
 
 ### User Journey
 
-1. **Guest Visit** → HomePage
-   - View wedding event details
-   - See Reception and Barat celebration info
-   - Navigate to login
+1. **Guest Visit** → HomePage  
+   Discover the charcoal & gold hero, floating florals, and entry points to each celebration.
 
-2. **Authentication** → LoginPage
-   - Enter invitation ID (e.g., "INV001", "INV002")
-   - System validates and redirects
+2. **Explore Celebrations** → ReceptionPage / BaratPage  
+   View curated schedules, embedded maps, and tappable WhatsApp contacts.
 
-3. **Personalized Invitation** → InvitationPage
-   - View custom greeting with guest name
-   - See event details (date, time, venue, dress code)
-   - Submit RSVP with attendance preference
-   - View updated guest counts
-
-4. **Admin Access** → AdminDashboard (Hidden)
-   - Access via hidden button (bottom-right corner)
-   - View guest statistics
-   - Manage RSVPs
-   - Export guest data to CSV
-
-## 👥 Sample Guest Data
-
-Pre-loaded mock guests for testing:
-
-| ID | Guest Name | Event | Status |
-|----|-----------|-------|--------|
-| INV001 | Rahul & Priya | Both | Pending |
-| INV002 | Amit Patel | Reception | Pending |
-| INV003 | Sunita Sharma | Barat | Pending |
-| INV004 | Vikram Singh | Both | Pending |
-| INV005 | Neha Kumar | Reception | Pending |
-| INV006 | Arjun Verma | Barat | Pending |
-
-**Note:** Use these IDs to test the login functionality.
+3. **Share Invitation** → InvitationPage  
+   Read the story, browse both events at a glance, and share/copy the public link—no login required.
 
 ## 🎨 Customization
 
 ### Colors & Theme
-Edit `tailwind.config.js` to customize colors:
-```javascript
-theme: {
-  extend: {
-    colors: {
-      blush: '#FFB6C1',   // Wedding blush pink
-      gold: '#FFD700',    // Accent gold
-      ivory: '#FFFFF0',   // Background ivory
-    }
-  }
-}
-```
+Edit `Styles/globals.css` and `tailwind.config.js` to adjust typography and palettes. The default palette leans on charcoal (#0b0b0b) and metallic gold (#d4af37) to match the invitation cards.
 
-### Mock Data
-Edit `Data/mockData.ts` to:
-- Add/remove guests
-- Change event details
-- Modify date and venue information
+### Event Content
+Update `wedding_invitation/eventContent.ts` to:
+- Change couple names or parent callouts
+- Adjust dates, times, or venue directions
+- Manage WhatsApp contacts and invitation copy
 
 ### Page Content
-Update individual page components in `wedding_invitation/` folder:
-- `HomePage.tsx` - Hero section and event cards
-- `LoginPage.tsx` - Authentication flow
-- `InvitationPage.tsx` - Invitation design
-- `AdminDashboard.tsx` - Admin interface
+Update individual page components in `wedding_invitation/`:
+- `HomePage.tsx` – Hero section and celebration cards
+- `ReceptionPage.tsx` / `BaratPage.tsx` – Detailed itineraries and maps
+- `InvitationPage.tsx` – Shareable open invitation
 
 ## 📱 Responsive Design
 
@@ -210,10 +161,9 @@ The application is fully responsive and optimized for:
 
 ## 🔐 Security Notes
 
-- Guest IDs are case-sensitive (INV001, not inv001)
-- Admin access is protected by a hidden button
-- All data is currently mock/demo data
-- For production, integrate with your backend API
+- Content is static and contains no guest data
+- Always serve over HTTPS to protect WhatsApp deeplinks
+- Integrate with your own backend if you later add RSVP capture or auth
 
 ## 🚢 Deployment
 
