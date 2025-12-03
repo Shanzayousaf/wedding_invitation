@@ -24,7 +24,7 @@ export function TileShanzaBaratAndWalima() {
             </p>
             <h2 className="text-3xl font-cursive text-[#d4af37]">Shanza Yousaf</h2>
             <p className="text-sm uppercase tracking-widest text-white/60">WITH</p>
-            <p className="text-xl font-serif text-white">Yasir Asghar</p>
+            <h2 className="text-3xl font-cursive text-[#d4af37]">Yasir Asghar</h2>
             <p className="text-xs text-white/50 font-serif">(S/O Mr. & Mrs. Asghar)</p>
           </div>
 
@@ -42,7 +42,7 @@ export function TileShanzaBaratAndWalima() {
             </p>
             <h2 className="text-3xl font-cursive text-[#d4af37]">M. Talha Yousaf</h2>
             <p className="text-sm uppercase tracking-widest text-white/60">WITH</p>
-            <p className="text-xl font-serif text-white">Muskan Kashan</p>
+            <h2 className="text-3xl font-cursive text-[#d4af37]">Muskan Kashan</h2>
             <p className="text-xs text-white/50 font-serif">(D/O Mr. & Mrs. M. Kashan)</p>
           </div>
 
