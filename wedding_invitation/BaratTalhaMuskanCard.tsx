@@ -9,12 +9,12 @@ export function BaratTalhaMuskanCard() {
         <div className="relative h-48 overflow-hidden rounded-t-[28px] bg-gradient-to-b from-[#111] to-[#050505]">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/20 to-[#0d0d0d]" />
           <div className="absolute bottom-4 left-6">
-            <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Family Announcement</p>
+            <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Yousaf Family Announcement</p>
             <h3 className="mt-2 text-3xl font-serif text-[#facc45] flex flex-wrap items-center gap-2">
               <span className="text-2xl">💍</span> Barat Ceremony
             </h3>
             <p className="text-base text-white/70 mt-1 font-serif">
-              M. Talha Yousaf &amp; Muskan Kashan
+              M. Talha Yousaf (S/O Mr. & Mrs. Tanveer Yousaf) &amp; Muskan Kashan (D/O Mr. & Mrs. M. Kashan)
             </p>
           </div>
         </div>

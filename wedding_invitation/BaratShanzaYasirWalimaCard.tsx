@@ -10,12 +10,12 @@ export function BaratShanzaYasirWalimaCard() {
           <header className="relative h-44 overflow-hidden rounded-t-[28px] bg-gradient-to-b from-[#111] to-[#050505]">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d0d0d]/20 to-[#0d0d0d]" />
             <div className="absolute bottom-4 left-6">
-              <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Honoring Family</p>
+              <p className="text-xs uppercase tracking-[0.6em] text-[#facc45]/80">Honoring Yousaf Family</p>
               <h3 className="mt-2 text-3xl font-serif text-[#facc45] flex flex-wrap items-center gap-2">
                 <span className="text-2xl">💍</span> Barat Ceremony
               </h3>
               <p className="text-base text-white/70 mt-1 font-serif">
-                Shanza Yousaf &amp; Yasir Asghar (S/O Mr. &amp; Mrs. Asghar)
+                Shanza Yousaf (D/O Mr. & Mrs. Tanveer Yousaf) &amp; Yasir Asghar (S/O Mr. &amp; Mrs. Asghar)
               </p>
             </div>
           </header>
@@ -48,7 +48,7 @@ export function BaratShanzaYasirWalimaCard() {
                 <span className="text-2xl">✨</span> Walima Reception
               </h3>
               <p className="text-base text-white/70 mt-1 font-serif">
-                M. Talha Yousaf &amp; Muskan Kashan
+                M. Talha Yousaf (S/O Mr. & Mrs. Tanveer Yousaf) &amp; Muskan Kashan
               </p>
             </div>
           </header>

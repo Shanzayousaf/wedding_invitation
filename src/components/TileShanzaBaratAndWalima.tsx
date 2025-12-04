@@ -20,9 +20,10 @@ export function TileShanzaBaratAndWalima() {
         <div className="p-8 md:p-10 space-y-6 border-b-2 border-[#d4af37]/40">
           <div className="space-y-4 text-center">
             <p className="text-xs uppercase tracking-[0.8em] text-[#d4af37] font-serif">
-              Honoring Family
+              Honoring Yousaf Family
             </p>
             <h2 className="text-3xl font-cursive text-[#d4af37]">Shanza Yousaf</h2>
+            <p className="text-xs text-white/50 font-serif">(D/O Mr. & Mrs. Tanveer Yousaf)</p>
             <p className="text-sm uppercase tracking-widest text-white/60">WITH</p>
             <h2 className="text-3xl font-cursive text-[#d4af37]">Yasir Asghar</h2>
             <p className="text-xs text-white/50 font-serif">(S/O Mr. & Mrs. Asghar)</p>
@@ -41,6 +42,7 @@ export function TileShanzaBaratAndWalima() {
               Evening Elegance
             </p>
             <h2 className="text-3xl font-cursive text-[#d4af37]">M. Talha Yousaf</h2>
+            <p className="text-xs text-white/50 font-serif">(S/O Mr. & Mrs. Tanveer Yousaf)</p>
             <p className="text-sm uppercase tracking-widest text-white/60">WITH</p>
             <h2 className="text-3xl font-cursive text-[#d4af37]">Muskan Kashan</h2>
             <p className="text-xs text-white/50 font-serif">(D/O Mr. & Mrs. M. Kashan)</p>

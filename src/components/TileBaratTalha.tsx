@@ -19,6 +19,7 @@ export function TileBaratTalha() {
             Wedding Ceremony of their Beloved Son
           </p>
           <h2 className="text-4xl font-cursive text-[#d4af37]">M. Talha Yousaf</h2>
+          <p className="text-xs text-white/50 font-serif">(S/O Mr. & Mrs. Tanveer Yousaf)</p>
           <p className="text-sm uppercase tracking-widest text-white/60">WITH</p>
           <h2 className="text-4xl font-cursive text-[#d4af37]">Muskan Kashan</h2>
           <p className="text-xs text-white/50 font-serif">(D/O Mr. & Mrs. M. Kashan)</p>
